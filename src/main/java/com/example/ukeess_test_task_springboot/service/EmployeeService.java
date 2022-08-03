@@ -1,13 +1,18 @@
 package com.example.ukeess_test_task_springboot.service;
 
+import com.example.ukeess_test_task_springboot.dtoModel.DtoResponsePagination;
 import com.example.ukeess_test_task_springboot.dtoModel.EmployeeDTO;
-import org.springframework.stereotype.Service;
+import com.example.ukeess_test_task_springboot.entity.Employee;
 
-@Service
-public class EmployeeService {
 
-    public EmployeeDTO updateEmployee(){
+public interface EmployeeService {
 
-        return null;
-    }
+    Employee getEmpById(int id);
+    int createNewEmployee(EmployeeDTO employeeDTO);
+    int updateEmployee(EmployeeDTO employeeDTO, int id);
+    int deleteEmployee(int id);
+    DtoResponsePagination getEmployees(String name, int index, int size);
+
+    DtoResponsePagination getEmployees(int index, int size);
+
 }

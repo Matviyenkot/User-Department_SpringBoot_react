@@ -1,29 +1,34 @@
 package com.example.ukeess_test_task_springboot.controller;
 
-import com.example.ukeess_test_task_springboot.dao.DepartmentDaoImpl;
+import com.example.ukeess_test_task_springboot.dao.DepartmentDao;
 import com.example.ukeess_test_task_springboot.entity.Department;
 import com.example.ukeess_test_task_springboot.handlers.NoSuchEntityException;
+import com.example.ukeess_test_task_springboot.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/departments")
 public class DepartmentController {
 
     @Autowired
-    private DepartmentDaoImpl departmentDao;
+    private DepartmentService departmentDao;
 
-    @GetMapping("/getDepartments")
+    @GetMapping("")
     public List<Department> getAllDepartments(){
 
-        return departmentDao.getAlldepartments();
+        return departmentDao.getAllDepartments();
     }
 
-    @GetMapping("/getDepartments/{id}")
+    @GetMapping("/{id}")
     public Department getDepartmentById(@PathVariable int id){
+
+        if(id <= 0)
+            throw new NoSuchEntityException("No Department with id" + id);
+
         Department department = departmentDao.getDepartmentByID(id);
 
         if(department == null)

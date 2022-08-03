@@ -1,12 +1,13 @@
 package com.example.ukeess_test_task_springboot.dtoModel;
 
-import com.example.ukeess_test_task_springboot.entity.Department;
-
 public class EmployeeDTO {
 
     private String name;
     private boolean isActive;
     private int departmentId;
+
+    public EmployeeDTO() {
+    }
 
     public EmployeeDTO(String name, boolean isActive, int departmentId) {
         this.name = name;

@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DepartmentDaoImpl {
+public class DepartmentDaoImpl implements DepartmentDao{
 
     @Autowired
     private DataSource dataSource;
 
-    public List<Department> getAlldepartments(){
+    public List<Department> getAllDepartments(){
 
         List<Department> departmentList = new ArrayList<>();
         try (Connection connection = dataSource.getConnection(); Statement st = connection.createStatement()){

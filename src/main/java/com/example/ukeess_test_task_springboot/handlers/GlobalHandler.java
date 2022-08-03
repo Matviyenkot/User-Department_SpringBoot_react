@@ -18,16 +18,25 @@ public class GlobalHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<IncorrectData> handleException(EntityUpdateException entityUpdateException){
+    public ResponseEntity<IncorrectData> handleException(NotRegisteredUser connectionFailedException){
 
         IncorrectData data = new IncorrectData();
-        data.setInfo(entityUpdateException.getMessage());
+        data.setInfo(connectionFailedException.getMessage());
 
         return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public ResponseEntity<IncorrectData> handleException(InvalidDataInputException invalidDataInputException){
+
+        IncorrectData data = new IncorrectData();
+        data.setInfo(invalidDataInputException.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectData> handleException(InvalidDataForRegistration invalidDataInputException){
 
         IncorrectData data = new IncorrectData();
         data.setInfo(invalidDataInputException.getMessage());
@@ -41,6 +50,15 @@ public class GlobalHandler {
         IncorrectData data = new IncorrectData();
         data.setInfo(noSuchEntityException.getMessage());
 
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<IncorrectData> handleException(TokenExpiredException tokenExpiredException){
+
+        IncorrectData data = new IncorrectData();
+        data.setInfo(tokenExpiredException.getMessage());
+
+        return new ResponseEntity<>(data, HttpStatus.UNAUTHORIZED);
     }
 }

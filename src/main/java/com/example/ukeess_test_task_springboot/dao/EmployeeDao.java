@@ -7,12 +7,11 @@ import java.util.List;
 
 public interface EmployeeDao {
 
-
+    int getTotalSize(String sql);
     Employee getEmpById(int id);
-    List<Employee> getAllEmps(int start, int size);
+    List<Employee> getEmployees(String sql);
     int createNewEmployee(EmployeeDTO employeeDTO);
     int updateEmployee(EmployeeDTO employeeDTO, int id);
     int deleteEmployee(int id);
-    List<Employee> findEmployeeByNameStart(String name);
 
 }

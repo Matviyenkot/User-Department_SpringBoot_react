@@ -1,14 +1,7 @@
 package com.example.ukeess_test_task_springboot.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-//@Entity
-//@Table(name = "Departments")
 public class Department {
 
-//    @Id
     private int id;
     private String depName;
 
